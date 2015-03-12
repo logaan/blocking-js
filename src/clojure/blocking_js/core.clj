@@ -13,12 +13,12 @@
 ; System.out.println(tree.toStringTree(parser));
 
 (defn restart []
-  (let [parser (-> (ANTLRFileStream. "resources/t.R")
-                   RLexer. 
+  (let [parser (-> (ANTLRFileStream. "resources/hiWaitBye.js")
+                   ECMAScriptLexer. 
                    CommonTokenStream.
-                   RParser.)]
+                   ECMAScriptParser.)]
     (.setBuildParseTree parser true)
-    (let [tree (.prog parser)]
+    (let [tree (.program parser)]
       (.inspect tree parser)
       (.println System/out (.toStringTree tree parser)))))
 

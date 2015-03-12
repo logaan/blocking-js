@@ -19,7 +19,7 @@
 (defn do-mapify [context]
   (->> (find-branch-method-names context)
        (map #(vector (keyword %) (call-method context %)))
-       (into {})))
+       (into (sorted-map))))
 
 (defn sorted-map-from-value-list [unsorted-map value-list]
   (let [inverted (s/map-invert unsorted-map)]
@@ -49,9 +49,7 @@
     (.setBuildParseTree parser true)
     (.program parser)))
 
-(comment 
 
-  (with-children (main))
-  
-  )
+#spy/p
+(with-children (main))
 

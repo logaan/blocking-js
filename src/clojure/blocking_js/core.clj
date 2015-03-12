@@ -52,7 +52,9 @@
     (.setBuildParseTree parser true)
     (.program parser)))
 
-
-#spy/p
-(with-children (main))
+(comment
+ 
+  (with-children (main))
+  
+  )
 

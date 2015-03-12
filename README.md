@@ -30,180 +30,153 @@ Will result in this parse tree:
 ```clojure
 {:object #<ProgramContext []>,
  :children
- {:EOF {:object #<TerminalNodeImpl <EOF>>, :text "<EOF>"},
-  :sourceElements
-  {:object #<SourceElementsContext [110]>,
+ ({:object #<SourceElementsContext [110]>,
    :children
    ({:object #<SourceElementContext [115 110]>,
      :children
-     {:functionDeclaration
-      {:object #<FunctionDeclarationContext [121 115 110]>,
+     ({:object #<FunctionDeclarationContext [121 115 110]>,
        :children
-       {:Function
-        {:object #<TerminalNodeImpl function>, :text "function"},
-        :Identifier
-        {:object #<TerminalNodeImpl hiWaitBye>, :text "hiWaitBye"},
-        :formalParameterList
+       ({:object #<TerminalNodeImpl function>, :text "function"}
+        {:object #<TerminalNodeImpl hiWaitBye>, :text "hiWaitBye"}
+        {:object #<TerminalNodeImpl (>, :text "("}
         {:object #<FormalParameterListContext [345 121 115 110]>,
          :children
          ({:object #<TerminalNodeImpl timeToWait>,
-           :text "timeToWait"})},
-        :functionBody
+           :text "timeToWait"})}
+        {:object #<TerminalNodeImpl )>, :text ")"}
+        {:object #<TerminalNodeImpl {>, :text "{"}
         {:object #<FunctionBodyContext [350 121 115 110]>,
          :children
-         {:sourceElements
-          {:object #<SourceElementsContext [361 350 121 115 110]>,
+         ({:object #<SourceElementsContext [361 350 121 115 110]>,
            :children
            ({:object #<SourceElementContext [115 361 350 121 115 110]>,
              :children
-             {:statement
-              {:object
+             ({:object
                #<StatementContext [120 115 361 350 121 115 110]>,
                :children
-               {:expressionStatement
-                {:object
+               ({:object
                  #<ExpressionStatementContext [127 120 115 361 350 121 115 110]>,
                  :children
-                 {:SemiColon
-                  {:object #<TerminalNodeImpl ;>, :text ";"},
-                  :expressionSequence
-                  {:object
+                 ({:object
                    #<ExpressionSequenceContext [174 127 120 115 361 350 121 115 110]>,
                    :children
                    ({:object
                      #<ArgumentsExpressionContext [454 174 127 120 115 361 350 121 115 110]>,
                      :children
-                     {:arguments
+                     ({:object
+                       #<MemberDotExpressionContext [86 454 174 127 120 115 361 350 121 115 110]>,
+                       :children
+                       ({:object
+                         #<IdentifierExpressionContext [86 86 454 174 127 120 115 361 350 121 115 110]>,
+                         :children
+                         ({:object #<TerminalNodeImpl console>,
+                           :text "console"})}
+                        {:object #<TerminalNodeImpl .>, :text "."}
+                        {:object
+                         #<IdentifierNameContext [559 86 454 174 127 120 115 361 350 121 115 110]>,
+                         :children
+                         ({:object #<TerminalNodeImpl log>,
+                           :text "log"})})}
                       {:object
                        #<ArgumentsContext [561 454 174 127 120 115 361 350 121 115 110]>,
                        :children
-                       {:argumentList
+                       ({:object #<TerminalNodeImpl (>, :text "("}
                         {:object
                          #<ArgumentListContext [441 561 454 174 127 120 115 361 350 121 115 110]>,
                          :children
                          ({:object
                            #<LiteralExpressionContext [446 441 561 454 174 127 120 115 361 350 121 115 110]>,
                            :children
-                           {:literal
-                            {:object
+                           ({:object
                              #<LiteralContext [501 446 441 561 454 174 127 120 115 361 350 121 115 110]>,
                              :children
-                             {:StringLiteral
-                              {:object #<TerminalNodeImpl "Hi.">,
-                               :text "\"Hi.\""}}}}})}}},
-                      :singleExpression
-                      {:object
-                       #<MemberDotExpressionContext [86 454 174 127 120 115 361 350 121 115 110]>,
-                       :children
-                       {:identifierName
-                        {:object
-                         #<IdentifierNameContext [559 86 454 174 127 120 115 361 350 121 115 110]>,
-                         :children
-                         {:Identifier
-                          {:object #<TerminalNodeImpl log>,
-                           :text "log"}}},
-                        :singleExpression
-                        {:object
-                         #<IdentifierExpressionContext [86 86 454 174 127 120 115 361 350 121 115 110]>,
-                         :children
-                         {:Identifier
-                          {:object #<TerminalNodeImpl console>,
-                           :text "console"}}}}}}})}}}}}}}
+                             ({:object #<TerminalNodeImpl "Hi.">,
+                               :text "\"Hi.\""})})})}
+                        {:object #<TerminalNodeImpl )>,
+                         :text ")"})})})}
+                  {:object #<TerminalNodeImpl ;>, :text ";"})})})}
             {:object #<SourceElementContext [115 361 350 121 115 110]>,
              :children
-             {:statement
-              {:object
+             ({:object
                #<StatementContext [120 115 361 350 121 115 110]>,
                :children
-               {:expressionStatement
-                {:object
+               ({:object
                  #<ExpressionStatementContext [127 120 115 361 350 121 115 110]>,
                  :children
-                 {:SemiColon
-                  {:object #<TerminalNodeImpl ;>, :text ";"},
-                  :expressionSequence
-                  {:object
+                 ({:object
                    #<ExpressionSequenceContext [174 127 120 115 361 350 121 115 110]>,
                    :children
                    ({:object
                      #<ArgumentsExpressionContext [454 174 127 120 115 361 350 121 115 110]>,
                      :children
-                     {:arguments
+                     ({:object
+                       #<IdentifierExpressionContext [86 454 174 127 120 115 361 350 121 115 110]>,
+                       :children
+                       ({:object #<TerminalNodeImpl sleep>,
+                         :text "sleep"})}
                       {:object
                        #<ArgumentsContext [561 454 174 127 120 115 361 350 121 115 110]>,
                        :children
-                       {:argumentList
+                       ({:object #<TerminalNodeImpl (>, :text "("}
                         {:object
                          #<ArgumentListContext [441 561 454 174 127 120 115 361 350 121 115 110]>,
                          :children
                          ({:object
                            #<IdentifierExpressionContext [446 441 561 454 174 127 120 115 361 350 121 115 110]>,
                            :children
-                           {:Identifier
-                            {:object #<TerminalNodeImpl timeToWait>,
-                             :text "timeToWait"}}})}}},
-                      :singleExpression
-                      {:object
-                       #<IdentifierExpressionContext [86 454 174 127 120 115 361 350 121 115 110]>,
-                       :children
-                       {:Identifier
-                        {:object #<TerminalNodeImpl sleep>,
-                         :text "sleep"}}}}})}}}}}}}
+                           ({:object #<TerminalNodeImpl timeToWait>,
+                             :text "timeToWait"})})}
+                        {:object #<TerminalNodeImpl )>,
+                         :text ")"})})})}
+                  {:object #<TerminalNodeImpl ;>, :text ";"})})})}
             {:object #<SourceElementContext [115 361 350 121 115 110]>,
              :children
-             {:statement
-              {:object
+             ({:object
                #<StatementContext [120 115 361 350 121 115 110]>,
                :children
-               {:expressionStatement
-                {:object
+               ({:object
                  #<ExpressionStatementContext [127 120 115 361 350 121 115 110]>,
                  :children
-                 {:SemiColon
-                  {:object #<TerminalNodeImpl ;>, :text ";"},
-                  :expressionSequence
-                  {:object
+                 ({:object
                    #<ExpressionSequenceContext [174 127 120 115 361 350 121 115 110]>,
                    :children
                    ({:object
                      #<ArgumentsExpressionContext [454 174 127 120 115 361 350 121 115 110]>,
                      :children
-                     {:arguments
+                     ({:object
+                       #<MemberDotExpressionContext [86 454 174 127 120 115 361 350 121 115 110]>,
+                       :children
+                       ({:object
+                         #<IdentifierExpressionContext [86 86 454 174 127 120 115 361 350 121 115 110]>,
+                         :children
+                         ({:object #<TerminalNodeImpl console>,
+                           :text "console"})}
+                        {:object #<TerminalNodeImpl .>, :text "."}
+                        {:object
+                         #<IdentifierNameContext [559 86 454 174 127 120 115 361 350 121 115 110]>,
+                         :children
+                         ({:object #<TerminalNodeImpl log>,
+                           :text "log"})})}
                       {:object
                        #<ArgumentsContext [561 454 174 127 120 115 361 350 121 115 110]>,
                        :children
-                       {:argumentList
+                       ({:object #<TerminalNodeImpl (>, :text "("}
                         {:object
                          #<ArgumentListContext [441 561 454 174 127 120 115 361 350 121 115 110]>,
                          :children
                          ({:object
                            #<LiteralExpressionContext [446 441 561 454 174 127 120 115 361 350 121 115 110]>,
                            :children
-                           {:literal
-                            {:object
+                           ({:object
                              #<LiteralContext [501 446 441 561 454 174 127 120 115 361 350 121 115 110]>,
                              :children
-                             {:StringLiteral
-                              {:object #<TerminalNodeImpl "Bye.">,
-                               :text "\"Bye.\""}}}}})}}},
-                      :singleExpression
-                      {:object
-                       #<MemberDotExpressionContext [86 454 174 127 120 115 361 350 121 115 110]>,
-                       :children
-                       {:identifierName
-                        {:object
-                         #<IdentifierNameContext [559 86 454 174 127 120 115 361 350 121 115 110]>,
-                         :children
-                         {:Identifier
-                          {:object #<TerminalNodeImpl log>,
-                           :text "log"}}},
-                        :singleExpression
-                        {:object
-                         #<IdentifierExpressionContext [86 86 454 174 127 120 115 361 350 121 115 110]>,
-                         :children
-                         {:Identifier
-                          {:object #<TerminalNodeImpl console>,
-                           :text "console"}}}}}}})}}}}}}})}}}}}}})}}}
+                             ({:object #<TerminalNodeImpl "Bye.">,
+                               :text "\"Bye.\""})})})}
+                        {:object #<TerminalNodeImpl )>,
+                         :text ")"})})})}
+                  {:object #<TerminalNodeImpl ;>, :text ";"})})})})})}
+        {:object #<TerminalNodeImpl }>, :text "}"})})})}
+  {:object #<TerminalNodeImpl <EOF>>, :text "<EOF>"})}
 ```
 
 ## License

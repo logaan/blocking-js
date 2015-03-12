@@ -4,6 +4,9 @@
   (:import [org.antlr.v4.runtime ANTLRFileStream CommonTokenStream ParserRuleContext]
            [clojure.lang Reflector]))
 
+(def insert-order-map
+  (sorted-map-by (constantly 0)))
+
 (defn find-branch-method-names [context]
   (->> context
        r/reflect
@@ -19,12 +22,12 @@
 (defn do-mapify [context]
   (->> (find-branch-method-names context)
        (map #(vector (keyword %) (call-method context %)))
-       (into (sorted-map))))
+       (into insert-order-map)))
 
 (defn sorted-map-from-value-list [unsorted-map value-list]
   (let [inverted (s/map-invert unsorted-map)]
     (-> (reduce (fn [acc value] (assoc acc (inverted value) value))
-                (sorted-map) value-list)
+                insert-order-map value-list)
         (dissoc nil))))
 
 (defn map-vals [t m]

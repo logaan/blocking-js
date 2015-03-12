@@ -206,6 +206,9 @@ Will result in this parse tree:
                            :text "console"}}}}}}})}}}}}}})}}}}}}})}}}
 ```
 
+The pretty printer may have messed with the order of children, but they should
+be stored in sorted-maps in the correct order.
+
 ## License
 
 Copyright © 2015 Logan Campbell

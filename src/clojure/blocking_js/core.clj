@@ -1,7 +1,11 @@
 (ns blocking-js.core
-  (:require [clojure.reflect :as r])
-  (:import [org.antlr.v4.runtime ANTLRFileStream CommonTokenStream]
+  (:require [clojure.reflect :as r]
+            [clojure.set :as s])
+  (:import [org.antlr.v4.runtime ANTLRFileStream CommonTokenStream ParserRuleContext]
            [clojure.lang Reflector]))
+
+; Might be easier to implement in terms of .children
+; Doesn't maintain order of child nodes
 
 (defn find-branch-method-names [context]
   (->> context
@@ -15,7 +19,33 @@
 (defn call-method [object method-name]
   (Reflector/invokeInstanceMethod object method-name (to-array [])))
 
-(defn restart []
+(defn do-mapify [context]
+  (->> (find-branch-method-names context)
+       (map #(vector (keyword %) (call-method context %)))
+       (into {})))
+
+(defn sorted-map-from-value-list [unsorted-map value-list]
+  (let [inverted (s/map-invert unsorted-map)]
+    (reduce (fn [acc value]
+              (let [key (inverted value)]
+                (if (nil? key) #spy/p value)
+                (assoc acc key  value)))
+            (sorted-map) value-list)))
+
+(defn map-vals [t m]
+  (into (empty m) (map (fn [[k v]] [k (t v)]) m)))
+
+(defn with-children [context]
+  (if (zero? (.getChildCount context))
+    {:object context}
+    {:object context 
+     :children (map-vals
+                 with-children
+                 (sorted-map-from-value-list
+                   (do-mapify context)
+                   (.children context)))}))
+
+(defn main []
   (let [parser (-> (ANTLRFileStream. "resources/hiWaitBye.js")
                    ECMAScriptLexer. 
                    CommonTokenStream.
@@ -23,21 +53,5 @@
     (.setBuildParseTree parser true)
     (.program parser)))
 
-(defn do-mapify [context]
-  (let [info {:text (.getText context)
-              :type (type context)}]
-    (if (zero? (.getChildCount context))
-      info
-      (->> (find-branch-method-names context)
-           (map #(vector (keyword %) (mapify (call-method context %))))
-           (into {})
-           (merge info)))))
-
-(defn mapify [context]
-  (if context
-    (if (= java.util.ArrayList (class context))
-      (map do-mapify context)
-      (do-mapify context))))
-
-#spy/p (mapify (restart))
+(with-children (main))
 

@@ -29,18 +29,17 @@ Will parse into a form that you can query like so:
 
 ```clojure
 (get-in (with-children (main))
-          [:children
-           :sourceElements
-           :children
-           0
-           :children
-           :functionDeclaration
-           :children
-           :Identifier
-           :text
-           ])
+        [:children
+         :sourceElements
+         :children
+         0
+         :children
+         :functionDeclaration
+         :children
+         :Identifier
+         :text])
 
-  ; => "hiWaitBye"
+=> "hiWaitBye"
 ```
 
 This is the parse tree you'll be querying:

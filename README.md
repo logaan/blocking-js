@@ -25,7 +25,25 @@ function hiWaitBye(timeToWait) {
 }
 ```
 
-Will result in this parse tree:
+Will parse into a form that you can query like so:
+
+```clojure
+(get-in (with-children (main))
+          [:children
+           :sourceElements
+           :children
+           0
+           :children
+           :functionDeclaration
+           :children
+           :Identifier
+           :text
+           ])
+
+  ; => "hiWaitBye"
+```
+
+This is the parse tree you'll be querying:
 
 ```clojure
 {:object #<ProgramContext []>,

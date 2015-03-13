@@ -41,7 +41,7 @@
      :children (let [sorted (sorted-map-from-value-list (do-mapify context)
                                                         (.children context))]
                  (if (empty? sorted)
-                   (map with-children (.children context))
+                   (mapv with-children (.children context))
                    (map-vals with-children sorted)))}))
 
 (defn main []
@@ -54,8 +54,22 @@
 
 
 (comment
- 
+
   (with-children (main))
-  
+
+  (get-in (with-children (main))
+          [:children
+           :sourceElements
+           :children
+           0
+           :children
+           :functionDeclaration
+           :children
+           :Identifier
+           :text
+           ])
+
+  ; => "hiWaitBye"
+
   )
 

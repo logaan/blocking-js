@@ -5,7 +5,7 @@
            [clojure.lang Reflector]))
 
 (def insert-order-map
-  (sorted-map-by (constantly 0)))
+  (sorted-map-by (fn [a b] (if (= a b) 0 1))))
 
 (defn find-branch-method-names [context]
   (->> context
@@ -22,7 +22,7 @@
 (defn do-mapify [context]
   (->> (find-branch-method-names context)
        (map #(vector (keyword %) (call-method context %)))
-       (into insert-order-map)))
+       (into {})))
 
 (defn sorted-map-from-value-list [unsorted-map value-list]
   (let [inverted (s/map-invert unsorted-map)]
@@ -37,20 +37,21 @@
   (if (zero? (.getChildCount context))
     {:object context
      :text   (.getText context)}
-    {:object context 
+    {:object context
      :children (let [sorted (sorted-map-from-value-list (do-mapify context)
                                                         (.children context))]
                  (if (empty? sorted)
-                   (map with-children (.children context))     
+                   (map with-children (.children context))
                    (map-vals with-children sorted)))}))
 
 (defn main []
   (let [parser (-> (ANTLRFileStream. "resources/hiWaitBye.js")
-                   ECMAScriptLexer. 
+                   ECMAScriptLexer.
                    CommonTokenStream.
                    ECMAScriptParser.)]
     (.setBuildParseTree parser true)
     (.program parser)))
+
 
 (comment
  
